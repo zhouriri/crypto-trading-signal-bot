@@ -1,0 +1,70 @@
+{
+  "telegram": {
+    "api_token": "YOUR_BOT_TOKEN_HERE",
+    "admin_ids": [123456789],
+    "allowed_user_ids": [],
+    "chat_id_for_reports": null,
+    "proxy": {
+      "enabled": false,
+      "http_proxy": "http://localhost:7890",
+      "https_proxy": "http://localhost:7890"
+    },
+    "polling_timeout": 30,
+    "connection_pool_size": 8,
+    "connection_retry_count": 3
+  },
+  "market_data": {
+    "primary_source": "binance",
+    "secondary_sources": ["coinmarketcap"],
+    "api_keys": {
+      "coinmarketcap": "YOUR_CMC_API_KEY_HERE",
+      "binance": ""
+    },
+    "cache": {
+      "enabled": true,
+      "ttl_seconds": 3600,
+      "max_items": 1000
+    },
+    "request_throttling": {
+      "enabled": true,
+      "requests_per_minute": 30
+    }
+  },
+  "analysis": {
+    "strategies": {
+      "short": {
+        "timeframes": ["15m", "1h"],
+        "indicators": ["rsi", "macd", "ema", "volume", "funding_rate"],
+        "rsi_thresholds": {
+          "oversold": 30,
+          "overbought": 70
+        }
+      },
+      "mid": {
+        "timeframes": ["4h", "1d"],
+        "indicators": ["ma", "obv", "rsi", "support_resistance"],
+        "ma_periods": [20, 50]
+      },
+      "long": {
+        "timeframes": ["1d", "1w"],
+        "indicators": ["mvrv", "nvt", "tvl", "token_unlocks"],
+        "trend_confirmation_days": 14
+      }
+    },
+    "default_strategy": "short",
+    "default_symbol": "BTC",
+    "default_quote_currency": "USDT"
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": "bot_output.log",
+    "max_file_size_mb": 10,
+    "backup_count": 5
+  },
+  "performance": {
+    "thread_pool_size": 4,
+    "cache_cleanup_interval": 3600,
+    "memory_limit_mb": 512
+  }
+} 
